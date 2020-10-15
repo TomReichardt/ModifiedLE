@@ -37,6 +37,12 @@ state.mle_params.alpha = 5.
 state.mle_params.rho0 = 0.005
 state.mle_params.n = 3
 
+#MESA EoS parameters - some default values to be updated by manually editing the input file
+state.mesa_eos_params = SimpleNamespace()
+state.mesa_eos_params.species = 22
+state.mesa_eos_params.chem_id = ["ineut","ih1","iprot","ihe3","ihe4","ic12","in14","io16","ine20","img24","isi28","is32","iar36","ica40","iti44","icr48","icr60","ife52","ife54","ife56","ico56","ini56"]
+state.mesa_eos_params.net_iso = ["ineut","ih1","iprot","ihe3","ihe4","ic12","in14","io16","ine20","img24","isi28","is32","iar36","ica40","iti44","icr48","icr60","ife52","ife54","ife56","ico56","ini56"]
+
 # Set kernel
 state.mle_params.kernel = phantom
 state.mle_params.kernel.set_hsoft(state.BCs.r / state.mle_params.kernel.radius)
@@ -138,7 +144,7 @@ def click_func(event):
     state.mle_params.mc = None
     state.mle_params.xi_max = None
     state.mle_params.rhobar = None
-    write_input_file(input_file, state.mle_params, state.bisection_inputs, state.cut_radius)
+    write_input_file(input_file, state.mle_params, state.bisection_inputs, state.cut_radius, state.mesa_eos_params)
 button.on_clicked(click_func)
 
 # Self-explanatory

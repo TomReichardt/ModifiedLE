@@ -10,7 +10,7 @@ profile_file = sys.argv[1]
 output_file = profile_file.split('.')[0] + '.out'
 input_file = profile_file.split('.')[0] + '.in'
 
-mle_params, bisection_inputs, cut_radius = read_input_file(input_file)
+mle_params, bisection_inputs, cut_radius, mesa_eos_params = read_input_file(input_file)
 
 BCs = find_bc(profile_file, cut_radius)
 mle_params = mle_run(mle_params, bisection_inputs, BCs)
@@ -28,5 +28,5 @@ print('Core mass = {} Msun'.format(mle_params.mc))
 print("Completed run with no errors (we hope)!")
 
 # Write the final solution to a file
-write_input_file(input_file, mle_params, bisection_inputs, cut_radius)
+write_input_file(input_file, mle_params, bisection_inputs, cut_radius, mesa_eos_params)
 
